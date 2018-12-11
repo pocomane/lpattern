@@ -1,4 +1,4 @@
-= Lpattern
+# Lpattern
 
 This code was extracted by the official Lua 5.3 source code. It contains the Lua
 pattern matching algorithm to be used standalone in your project. The original
@@ -10,7 +10,7 @@ the new code is relesed under the unlicense.org.
 
 All the code is provided without any warranty.
 
-= Build
+# Build
 
 No build system is provided. You should be able to compile a library with:
 
@@ -25,7 +25,7 @@ or the example application with:
 gcc -std=c99 lpattern.c main.c
 ```
 
-= Usage
+# Usage
 
 The wrapper function is called in this way:
 
