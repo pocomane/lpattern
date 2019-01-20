@@ -39,90 +39,14 @@
 
 // Mask unused lua API
 
-#define LUAMOD_API 
-#define LUA_INTEGER_FRMLEN ""
-#define LUA_INTEGER_FMT ""
-#define LUA_NUMBER_FRMLEN ""
-#define LUA_MININTEGER (0)
-#define LUA_TNIL (1)
-#define LUA_TFUNCTION (3)
-#define LUA_TNUMBER (4)
-#define LUA_TSTRING (5)
-#define LUA_TTABLE (6)
-#define LUA_TBOOLEAN (7)
-#define MAX_10_EXP (0)
-
-#define l_mathlim(...) (0)
-#define l_sprintf(...) (0)
-
-#define luaL_addchar(...) (0)
-#define luaL_addlstring(...) (0)
-#define luaL_addsize(...) (0)
-#define luaL_addstring(...) (0)
-#define luaL_addvalue(...) (0)
-#define luaL_argcheck(...) (0)
-#define luaL_argcheck(...) (0)
-#define luaL_argerror(...) (0)
-#define luaL_buffinit(...) (0)
-#define luaL_buffinitsize(...) (0)
-#define luaL_checkinteger(...) (0)
-#define luaL_checklstring(...) (0)
-#define luaL_checknumber(...) (0)
-#define luaL_checkstack(...) (0)
-#define luaL_checkstring(...) (0)
-#define luaL_checktype(...) (0)
-#define luaL_checktype(...) (0)
-#define luaL_error(...) (0)
-#define luaL_newlib(...) (0)
-#define luaL_optinteger(...) (0)
-#define luaL_optinteger(...) (0)
-#define luaL_optlstring(...) (0)
-#define luaL_optlstring(...) (0)
-#define luaL_prepbuffsize(...) (0)
-#define luaL_prepbuffsize(...) (0)
-#define luaL_pushresult(...) (0)
-#define luaL_pushresultsize(...) (0)
-#define luaL_tolstring(...) (0)
-#define luaL_typename(...) (0)
-#define lua_Integer int
-#define lua_Number int
-#define lua_Toboolean(...) (0)
 #define lua_assert(...) (0)
-#define lua_call(...) (0)
-#define lua_createtable(...) (0)
-#define lua_dump(...) (0)
-#define lua_getlocaledecpoint(...) (0)
-#define lua_gettable(...) (0)
-#define lua_gettop(...) (0)
-#define lua_isinteger(...) (0)
-#define lua_isstring(...) (0)
-#define lua_newuserdata(...) (0)
-#define lua_number2strx(...) (0)
-#define lua_pop(...) (0)
-#define lua_pushcclosure(...) (0)
+#define luaL_checkstack(...) (0)
 #define lua_pushinteger(...) (0)
-#define lua_pushliteral(...) (0)
 #define lua_pushlstring(...) (0)
-#define lua_pushnil(...) (0)
-#define lua_pushnumber(...) (0)
-#define lua_pushvalue(...) (0)
-#define lua_remove(...) (0)
-#define lua_setfield(...) (0)
-#define lua_setmetatable(...) (0)
-#define lua_settop(...) (0)
-#define lua_toboolean(...) (0)
-#define lua_tointeger(...) (0)
-#define lua_tolstring(...) (0)
-#define lua_tolstring(...) (0)
-#define lua_tonumber(...) (0)
-#define lua_touserdata(...) (0)
-#define lua_type(...) (0)
-#define lua_upvalueindex(...) (0)
-#define num2straux(...) (0)
+#define luaL_error(...) (0)
+#define lua_Integer int
 
-#define luaL_Buffer int
 #define lua_State int
-#define lua_Unsigned int
 
 typedef int luafunc(lua_State *);
 typedef struct {char* a; luafunc* b;} luaL_Reg;
