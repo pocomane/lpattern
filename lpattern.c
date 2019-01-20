@@ -40,9 +40,6 @@
 // Mask unused lua API
 
 #define lua_assert(...) (0)
-#define luaL_checkstack(...) (0)
-#define lua_pushinteger(...) (0)
-#define lua_pushlstring(...) (0)
 #define luaL_error(...) (0)
 #define lua_Integer int
 
