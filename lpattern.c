@@ -34,16 +34,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <setjmp.h>
 
 #include "lpattern.h"
 
 // Mask unused lua API
 
 #define lua_assert(...) (0)
-#define luaL_error(...) (0)
+#define luaL_error(S,...) (snprintf(S->result->extra.error_message,LPATTERN_MAX_ERROR,__VA_ARGS__), S->result->is_error = 1, longjmp (S->buf, 1), 0)
 #define lua_Integer int
 
-#define lua_State int
+typedef struct {
+  lpattern_t* result;
+  jmp_buf buf;
+} lua_State;
 
 typedef int luafunc(lua_State *);
 typedef struct {char* a; luafunc* b;} luaL_Reg;
@@ -55,9 +59,15 @@ typedef struct {char* a; luafunc* b;} luaL_Reg;
 // WRAPPER
 
 lpattern_t lpattern_find (const char* p, size_t lp, const char* s, size_t ls) {
+  lpattern_t result = {0};
+
   lua_State Ld; 
   lua_State *L = &Ld; 
-  lpattern_t result = {0};
+  L->result = &result;
+  if (setjmp(L->buf)) {
+    return result;
+  }
+
   int init = 1;
   MatchState ms;
 
@@ -83,10 +93,15 @@ lpattern_t lpattern_find (const char* p, size_t lp, const char* s, size_t ls) {
     if (CAP_POSITION != ms.capture[i].len && CAP_UNFINISHED != ms.capture[i].len) {
       // TODO : error if any CAP_UNFINISHED ?
       result.level += 1;
-      result.capture[i].data = ms.capture[i].init;
-      result.capture[i].length = ms.capture[i].len;
+      result.extra.capture[i].data = ms.capture[i].init;
+      result.extra.capture[i].length = ms.capture[i].len;
     }
   }
   return result;
+}
+
+char* lpattern_error (lpattern_t* state){
+  if (!state || !state->is_error) return 0;
+  return state->extra.error_message;
 }
 

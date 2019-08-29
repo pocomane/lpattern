@@ -38,17 +38,24 @@
 #define LUA_MAXCAPTURES		32
 #endif
 
+#define LPATTERN_MAX_ERROR 256
+
 typedef struct {
   const char *found; // NULL if not found
   size_t length;
   unsigned char level;  /* total number of captures (finished or unfinished) */
-  struct {
-    const char *data;
-    size_t length;
-  } capture[LUA_MAXCAPTURES];
+  int is_error;
+  union {
+    char error_message[LPATTERN_MAX_ERROR];
+    struct {
+      const char *data;
+      size_t length;
+    } capture[LUA_MAXCAPTURES];
+  } extra;
 } lpattern_t;
 
 lpattern_t lpattern_find (const char*, size_t, const char*, size_t);
+char* lpattern_error (lpattern_t*);
 
 #endif // _LUA_PATTERN_H_
 

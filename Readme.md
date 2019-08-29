@@ -38,7 +38,7 @@ The wrapper function is called in this way:
 
   if (match.found)
     for (int i=0; i<match.level; i++)
-      printf("%.*s", match.capture[i].length, match.capture[i].data);
+      printf("%.*s", match.extra.capture[i].length, match.extra.capture[i].data);
 
 // ...
 ```

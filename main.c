@@ -75,6 +75,11 @@ int main(int argc, char** argv){
     }
 
     lpattern_t ms = lpattern_find (argv[2], strlen(argv[2]), line, linelen);
+    char * err = lpattern_error (&ms);
+    if (err) {
+      fprintf (stderr, "%s\n", err);
+      return -1;
+    }
 
     switch (mode){
       default:;
@@ -83,7 +88,7 @@ int main(int argc, char** argv){
         if (ms.found) {
           for (int i=0;i<ms.level;i++){
             if (i!=0) printf("\t");
-            printf("%.*s", ms.capture[i].length, ms.capture[i].data);
+            printf("%.*s", ms.extra.capture[i].length, ms.extra.capture[i].data);
           }
           printf("\n");
         }
