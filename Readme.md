@@ -35,6 +35,8 @@ The wrapper function is called in this way:
 // ...
 
   lpattern_t match = lpattern_find (argv[2], strlen(argv[2]), line, linelen);
+  char * err = lpattern_error (&match);
+  if (err) return -1;
 
   if (match.found)
     for (int i=0; i<match.level; i++)
